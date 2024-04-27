@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>view recepie</title>
+</head>
+<body>
+    <h2>view uploaded recipies</h2>
+    <form method="GET" action="{% url 'search'%}">
+        {%csrf_token%}
+        <label for="search">search</label>
+        <input type="text" name="search" id="search">
+        <button type="submit">submit</button>
+    </form>
+    <table style="border-width: 3px;">
+        <tr>
+            <th>recepie name</th>
+            <th>recepie description</th>
+            <th>recepie image</th>
+        </tr>
+        {% for x in recepies %}
+        <tr>
+            <td>{{x.recipies_name}}</td>
+            <td>{{x.description}}</td>
+            <td>
+                <img src="/media/{{x.recipie_image}}"></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
